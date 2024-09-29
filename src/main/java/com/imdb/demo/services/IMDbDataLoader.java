@@ -65,7 +65,7 @@ public class IMDbDataLoader {
         return titleCrews;    }
 
 
-    private List<TitleCrew> loadPeople(String filePath) throws IOException {
+    private List<NameBasics> loadPeople(String filePath) throws IOException {
         List<NameBasics> nameBasics = new ArrayList<>();
         try (Reader reader = Files.newBufferedReader(Paths.get(filePath));
              BufferedReader bufferedReader = new BufferedReader(reader);
@@ -80,7 +80,8 @@ public class IMDbDataLoader {
                 ));
             });
         }
-        return nameBasics;    }
+        return nameBasics;
+    }
 
     private List<TitlePrincipals> loadPrincipals(String filePath) throws IOException {
         List<TitlePrincipals> titlePrincipals = new ArrayList<>();
@@ -112,5 +113,23 @@ public class IMDbDataLoader {
         return titleRatings;
     }
 
+    public List<TitleBasics> getTitles() {
+        return titles;
+    }
 
+    public List<TitleCrew> getCrews() {
+        return crews;
+    }
+
+    public List<NameBasics> getPeople() {
+        return people;
+    }
+
+    public List<TitlePrincipals> getPrincipals() {
+        return principals;
+    }
+
+    public List<TitleRatings> getRatings() {
+        return ratings;
+    }
 }

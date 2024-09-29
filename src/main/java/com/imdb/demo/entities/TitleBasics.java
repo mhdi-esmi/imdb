@@ -100,4 +100,5 @@ public class TitleBasics {
     public void setGenres(List<String> genres) {
         this.genres = genres;
     }
+
 }

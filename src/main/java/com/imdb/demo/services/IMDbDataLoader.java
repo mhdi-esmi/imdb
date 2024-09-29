@@ -33,13 +33,13 @@ public class IMDbDataLoader {
     }
 
     private List<TitleBasics> loadTitles(String filePath) throws IOException {
-        List<TitleBasics> titleBasics = new ArrayList<>();
+        List<TitleBasics> titles = new ArrayList<>();
         try (Reader reader = Files.newBufferedReader(Paths.get(filePath));
              BufferedReader bufferedReader = new BufferedReader(reader);
              Stream<String> lines = bufferedReader.lines()) {
             lines.skip(1).forEach(line -> {
                 String[] fields = line.split("\t");
-                titleBasics.add(new TitleBasics(fields[0],fields[1], fields[2], fields[3],
+                titles.add(new TitleBasics(fields[0],fields[1], fields[2], fields[3],
                         Boolean.parseBoolean(fields[4]),
                         fields[5].equals("\\N") ? null : Integer.parseInt(fields[5]),
                         fields[6].equals("\\N") ? null : Integer.parseInt(fields[6]),
@@ -47,32 +47,32 @@ public class IMDbDataLoader {
                         Arrays.asList(fields[8].split(","))));
             });
         }
-        return titleBasics;
+        return titles;
     }
 
     private List<TitleCrew> loadCrews(String filePath) throws IOException {
-        List<TitleCrew> titleCrews = new ArrayList<>();
+        List<TitleCrew> crews = new ArrayList<>();
         try (Reader reader = Files.newBufferedReader(Paths.get(filePath));
              BufferedReader bufferedReader = new BufferedReader(reader);
              Stream<String> lines = bufferedReader.lines()) {
             lines.skip(1).forEach(line -> {
                 String[] fields = line.split("\t");
-                titleCrews.add(new TitleCrew(fields[0],
+                crews.add(new TitleCrew(fields[0],
                         Arrays.asList(fields[1].split(",")),
                         Arrays.asList(fields[2].split(","))));
             });
         }
-        return titleCrews;    }
+        return crews;    }
 
 
     private List<NameBasics> loadPeople(String filePath) throws IOException {
-        List<NameBasics> nameBasics = new ArrayList<>();
+        List<NameBasics> people = new ArrayList<>();
         try (Reader reader = Files.newBufferedReader(Paths.get(filePath));
              BufferedReader bufferedReader = new BufferedReader(reader);
              Stream<String> lines = bufferedReader.lines()) {
             lines.skip(1).forEach(line -> {
                 String[] fields = line.split("\t");
-                nameBasics.add(new NameBasics(fields[0],fields[1],
+                people.add(new NameBasics(fields[0],fields[1],
                         fields[2].equals("\\N") ? null : Integer.parseInt(fields[2]),
                         fields[3].equals("\\N") ? null : Integer.parseInt(fields[3]),
                         Arrays.asList(fields[4].split(",")),
@@ -80,37 +80,37 @@ public class IMDbDataLoader {
                 ));
             });
         }
-        return nameBasics;
+        return people;
     }
 
     private List<TitlePrincipals> loadPrincipals(String filePath) throws IOException {
-        List<TitlePrincipals> titlePrincipals = new ArrayList<>();
+        List<TitlePrincipals> principals = new ArrayList<>();
         try (Reader reader = Files.newBufferedReader(Paths.get(filePath));
              BufferedReader bufferedReader = new BufferedReader(reader);
              Stream<String> lines = bufferedReader.lines()) {
             lines.skip(1).forEach(line -> {
                 String[] fields = line.split("\t");
-                titlePrincipals.add(new TitlePrincipals(fields[0],
+                principals.add(new TitlePrincipals(fields[0],
                         fields[1].equals("\\N") ? null : Integer.parseInt(fields[1]),
                         fields[2],fields[3],fields[4],fields[5]));
             });
         }
-        return titlePrincipals;
+        return principals;
     }
 
     private List<TitleRatings> loadRatings(String filePath) throws IOException {
-        List<TitleRatings> titleRatings = new ArrayList<>();
+        List<TitleRatings> ratings = new ArrayList<>();
         try (Reader reader = Files.newBufferedReader(Paths.get(filePath));
              BufferedReader bufferedReader = new BufferedReader(reader);
              Stream<String> lines = bufferedReader.lines()) {
             lines.skip(1).forEach(line -> {
                 String[] fields = line.split("\t");
-                titleRatings.add(new TitleRatings(fields[0],
+                ratings.add(new TitleRatings(fields[0],
                         fields[1].equals("\\N") ? null : Double.parseDouble(fields[1]),
                         fields[2].equals("\\N") ? null : Integer.parseInt(fields[2])));
             });
         }
-        return titleRatings;
+        return ratings;
     }
 
     public List<TitleBasics> getTitles() {

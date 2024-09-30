@@ -43,9 +43,7 @@ public class DataLoader {
 //    @Value("${saveDir}")
 //    private String saveDir
 
-    public enum Url {
-        TITLEURL, PERSONURL, RATINGURL, CREQURl
-    }
+
 
 
     private final TitleRepository titleRepository;
@@ -69,7 +67,6 @@ public class DataLoader {
     @Bean
     public void downloadFiles() {
         List<String> urls = List.of(titleUrl, personUrl, ratingsUrl, crewUrl);
-//        List<String> urls = List.of(titleUrl, personUrl, ratingsUrl, crewUrl);
         urls.forEach(url ->
                 CompletableFuture.runAsync(() -> {
                     try {

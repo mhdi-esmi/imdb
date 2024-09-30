@@ -43,9 +43,7 @@ public class DataLoader {
 //    @Value("${saveDir}")
 //    private String saveDir
 
-    public enum Url {
-        TITLEURL, PERSONURL, RATINGURL, CREQURl
-    }
+
 
 
     private final TitleRepository titleRepository;

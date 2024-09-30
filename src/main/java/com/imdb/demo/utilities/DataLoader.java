@@ -67,7 +67,6 @@ public class DataLoader {
     @Bean
     public void downloadFiles() {
         List<String> urls = List.of(titleUrl, personUrl, ratingsUrl, crewUrl);
-//        List<String> urls = List.of(titleUrl, personUrl, ratingsUrl, crewUrl);
         urls.forEach(url ->
                 CompletableFuture.runAsync(() -> {
                     try {

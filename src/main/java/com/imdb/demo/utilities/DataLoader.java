@@ -68,16 +68,16 @@ public class DataLoader {
 
     @Bean
     public void downloadFiles() {
-//        List<String> urls = List.of(titleUrl, personUrl, ratingsUrl, crewUrl);
         List<String> urls = List.of(titleUrl, personUrl, ratingsUrl, crewUrl);
+//        List<String> urls = List.of(titleUrl, personUrl, ratingsUrl, crewUrl);
         urls.forEach(url ->
                 CompletableFuture.runAsync(() -> {
-//                    try {
-//                        DataDownloader.downloadFile(url, saveDir);
-                        System.out.println("****"+url);
-//                    } catch (IOException e) {
-//                        throw new RuntimeException(e);
-//                    }
+                    try {
+                        DataDownloader.downloadFile(url, saveDir);
+//                        System.out.println("****"+url);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }).thenRunAsync(()-> {
                     switch (url) {
                         case titleUrl -> saveTitlesToDatabase();

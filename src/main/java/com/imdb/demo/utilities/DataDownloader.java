@@ -13,21 +13,19 @@ public class DataDownloader {
 
         // Check if the connection is successful
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            String fileName = "";
+            System.out.println("File downloaded: "+fileURL);
+                    String fileName = "";
             String disposition = httpConn.getHeaderField("Content-Disposition");
 
-            // Extract filename from header
             if (disposition != null) {
                 int index = disposition.indexOf("filename=");
                 if (index > 0) {
                     fileName = disposition.substring(index + 10, disposition.length() - 1);
                 }
             } else {
-                // Extract file name from URL if header does not have it
                 fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1);
             }
 
-            // Open input stream and output stream
             InputStream inputStream = httpConn.getInputStream();
             String saveFilePath = saveDir + File.separator + fileName;
 
